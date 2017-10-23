@@ -3,8 +3,14 @@ import { Footer, FooterTab, Button, Text } from 'native-base';
 import { MODES } from '../constants';
 
 export default class AppFooter extends React.Component {
+    constructor() {
+        super();
+
+        this.btnPress = this.btnPress.bind(this);
+    }
+
     btnPress(arg) {
-        // this.props.setMode(arg);
+        this.props.setMode(arg);
     }
 
     render() {

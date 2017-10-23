@@ -1,6 +1,8 @@
 import React from 'react';
-import AppFooter from '../components/AppFooter.js';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import AppFooter from '../components/AppFooter.js';
 import { setMode } from '../actions';
 
 function mapStateToProps(state) {
@@ -9,13 +11,11 @@ function mapStateToProps(state) {
     };
 }
 
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         setMode: function (mode) {
-//             return dispatch(setMode(mode));
-//         }
-//     };
-// }
+function mapDispatchToProps(dispatch) {
+    return {
+        setMode: bindActionCreators(setMode, dispatch)
+    };
+}
 
 class AppFooterContainer extends React.Component {
     render() {
@@ -27,4 +27,4 @@ class AppFooterContainer extends React.Component {
 
 // export default AppFooterContainer;
 
-export default connect(mapStateToProps)(AppFooterContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AppFooterContainer);
