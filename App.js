@@ -6,13 +6,14 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import AppFooterContainer from './containers/AppFooterContainer.js';
-import reducers from './reducers';
+import AppHeaderContainer from './containers/AppHeaderContainer.js';
+import rootReducer from './reducers';
 import { MODES } from './constants';
 
 const initialState = {
   mode: MODES.ARTICLES
 };
-const store = createStore(reducers, initialState);
+const store = createStore(rootReducer, initialState);
 
 export default class App extends React.Component {
   constructor() {
@@ -37,11 +38,13 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <Container>
+          <AppHeaderContainer />
           <Content>
             <View style={styles.container}>
               <Text>Open up App.js to start working on your app!</Text>
               <Text>Changes you make will automatically reload.</Text>
               <Text>Shake your phone to open the developer menu.</Text>
+              
             </View>
           </Content>
           <AppFooterContainer />

@@ -2,12 +2,13 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import AppFooter from '../components/AppFooter.js';
+import AppHeader from '../components/AppHeader.js';
+import { setMode } from '../actions';
 
 function mapStateToProps(state) {
     return {
-        mode: state.mode
+        mode: state.mode,
     };
 }
 
-export default connect(mapStateToProps)(AppFooter);
+export default connect(mapStateToProps)(AppHeader);

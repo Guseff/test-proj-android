@@ -1,14 +1,7 @@
-import { SET_MODE } from '../constants';
+import { combineReducers } from 'redux';
 
-export default (state = [], action) => {
-    switch (action.type) {
-        case SET_MODE: {
-            return Object.assign({}, state, {
-                mode: action.mode
-            });
-        }
+import footer from './footer.js';
 
-        default: 
-            return state;
-    }
-};
+export default combineReducers({
+    footer,
+});
