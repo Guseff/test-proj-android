@@ -1,11 +1,12 @@
-import { SET_MODE, MODES } from '../constants';
+import { SET_MODE, TABS } from '../constants';
 
 const initialState = {
-    mode: MODES.ARTICLES
+    mode: TABS.HOME
   };
 
 export default function footer(state = initialState, action) {
     switch (action.type) {
+        
         case SET_MODE: {
             return Object.assign({}, state, {
                 mode: action.payload

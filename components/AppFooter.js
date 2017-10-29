@@ -1,6 +1,6 @@
 import React from 'react';
 import { Footer, FooterTab, Button, Text, Icon } from 'native-base';
-import { MODES } from '../constants';
+import { TABS } from '../constants';
 
 import { setMode } from '../actions';
 
@@ -22,16 +22,16 @@ export default class AppFooter extends React.Component {
         return (
             <Footer>
                 <FooterTab>
-                    <Button active={this.props.mode === MODES.ARTICLES} onPress={this.btnPress(MODES.ARTICLES)}>
+                    <Button active={this.props.mode === TABS.HOME} onPress={this.btnPress(TABS.HOME)}>
                         <Icon name='home' />
                     </Button>
-                    <Button active={this.props.mode === MODES.PODCASTS} onPress={this.btnPress(MODES.PODCASTS)}>
+                    <Button active={this.props.mode === TABS.LOVES} onPress={this.btnPress(TABS.LOVES)}>
                         <Icon name='heart'/>
                     </Button>
-                    <Button active={this.props.mode === MODES.PODCASTS}>
+                    <Button active={this.props.mode === TABS.SETTINGS} onPress={this.btnPress(TABS.SETTINGS)}>
                         <Icon name='build'/>
                     </Button>
-                    <Button active={this.props.mode === MODES.PODCASTS}>
+                    <Button active={this.props.mode === TABS.HELP} onPress={this.btnPress(TABS.HELP)}>
                         <Icon name='help'/>
                     </Button>
                 </FooterTab>

@@ -8,12 +8,12 @@ import { Provider } from 'react-redux';
 import AppFooterContainer from './containers/AppFooterContainer.js';
 import AppHeaderContainer from './containers/AppHeaderContainer.js';
 import rootReducer from './reducers';
-import { MODES } from './constants';
+import { TABS } from './constants';
 
 const initialState = {
-  mode: MODES.ARTICLES
+  mode: TABS.HOME
 };
-const store = createStore(rootReducer, initialState);
+const store = createStore(rootReducer);
 
 export default class App extends React.Component {
   constructor() {
