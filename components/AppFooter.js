@@ -13,7 +13,6 @@ export default class AppFooter extends React.Component {
 
     btnPress(arg) {
         return (e) => {
-            console.log(this.props);
             this.props.dispatch(setMode(arg));
         };
     }

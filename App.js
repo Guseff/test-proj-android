@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 
 import AppFooterContainer from './containers/AppFooterContainer.js';
 import AppHeaderContainer from './containers/AppHeaderContainer.js';
+import MainFieldContainer from './containers/MainFieldContainer.js';
 import rootReducer from './reducers';
 import { TABS } from './constants';
 
@@ -39,13 +40,8 @@ export default class App extends React.Component {
       <Provider store={store}>
         <Container>
           <AppHeaderContainer />
-          <Content>
-            <View style={styles.container}>
-              <Text>Open up App.js to start working on your app!</Text>
-              <Text>Changes you make will automatically reload.</Text>
-              <Text>Shake your phone to open the developer menu.</Text>
-              
-            </View>
+          <Content style={styles.container}>
+            <MainFieldContainer />
           </Content>
           <AppFooterContainer />
         </Container>

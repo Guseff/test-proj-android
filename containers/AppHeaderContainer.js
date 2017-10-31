@@ -3,11 +3,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import AppHeader from '../components/AppHeader.js';
-import { setMode } from '../actions';
 
 function mapStateToProps(state) {
     return {
-        mode: state.mode,
+        // mode: state.header.mode,  
+        // it's no header reducer added yet 
     };
 }
 
