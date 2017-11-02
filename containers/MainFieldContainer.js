@@ -5,8 +5,7 @@ import MainField from '../components/MainField.js';
 
 function mapStateToProps(state) {
     return {
-        // mode: state.mainField.mode,  
-        // it's no mainField reducer added yet 
+        mode: state.footer.mode,   
     };
 }
 

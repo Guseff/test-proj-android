@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import AppFooter from '../components/AppFooter.js';
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
         mode: state.footer.mode
     };

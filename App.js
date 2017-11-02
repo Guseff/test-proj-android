@@ -40,9 +40,9 @@ export default class App extends React.Component {
       <Provider store={store}>
         <Container>
           <AppHeaderContainer />
-          <Content style={styles.container}>
+          <View style={styles.container}>
             <MainFieldContainer />
-          </Content>
+          </View>
           <AppFooterContainer />
         </Container>
       </Provider>
@@ -53,8 +53,12 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 40,
-    paddingRight: 15,
-    paddingLeft: 15,
+    paddingTop: 5,
+    paddingRight: 5,
+    paddingLeft: 5,
+    backgroundColor: '#2980B9',
+    borderWidth: 3,
+    borderColor: 'green',
+    flex: 1
   },
 });
