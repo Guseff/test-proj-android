@@ -5,7 +5,8 @@ import {
     Image,
     TouchableWithoutFeedback,
     TouchableOpacity,
-    PanResponder
+    PanResponder,
+    Animated
 } from 'react-native';
 import { Text } from 'native-base';
 
@@ -14,6 +15,12 @@ import { setMode } from '../actions';
 export default class MoveExample extends React.Component {
     constructor() {
         super();
+
+        this.state = {
+            coordX: new Animated.Value(0),
+        }
+
+        this.moveHandle = this.moveHandle.bind(this);
     }
 
     componentWillMount() {
@@ -28,18 +35,10 @@ export default class MoveExample extends React.Component {
                 console.log('Touch');
             },
             onPanResponderMove: (evt, gestureState) => {
-              // The most recent move distance is gestureState.move{X,Y}
-              console.log(
-                  'Move',
-                //   gestureState.x0,
-                //   gestureState.y0,
-                  gestureState.moveX,
-                //   gestureState.moveY,
-                  gestureState.dx,
-                //   gestureState.dy
-                );
-              // The accumulated gesture distance since becoming responder is
-              // gestureState.d{x,y}
+                // console.log('Move', gestureState.moveX);
+                this.moveHandle(gestureState.moveX);
+                //   gestureState.moveX,
+                //   gestureState.dx,
             },
             onPanResponderTerminationRequest: (evt, gestureState) => true,
             onPanResponderRelease: (evt, gestureState) => {},
@@ -50,14 +49,29 @@ export default class MoveExample extends React.Component {
           });
     }
 
+    moveHandle(xxx) {
+        let a = xxx - 40;
+        a = a < 0 ? 0 : a;
+        a = a > 260 ? 260 : a;
+        Animated.timing(
+            this.state.coordX,
+            {
+                toValue: a,
+                duration: 50
+            }
+        ).start();
+    }
+
     render() {
+        let { coordX } = this.state;
+
         return (
             <View 
                 {...this._panResponder.panHandlers}
                 style={styles.wrap}> 
-                    <Image 
+                    <Animated.Image 
                         source={require('../img/Airplane.png')} 
-                        style={styles.img} 
+                        style={[styles.img, {left: coordX}]} 
                     />
             </View>
         );
@@ -74,7 +88,6 @@ const styles = StyleSheet.create({
         height: 80,
         width: 80,
         position: 'absolute',
-        top: 0,
-        left: 50
+        top: 100,
     }
   });

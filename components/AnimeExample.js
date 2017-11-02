@@ -4,7 +4,8 @@ import {
     View,
     Image,
     TouchableNativeFeedback,
-    Animated
+    Animated,
+    Dimensions
 } from 'react-native';
 import { Text } from 'native-base';
 import { TABS } from '../constants';
@@ -21,11 +22,15 @@ export default class AnimeExample extends React.Component {
 
     state = {
         coordX: new Animated.Value(0),
-        widthX: new Animated.Value(80)
+        widthX: new Animated.Value(80),
+        shY: new Animated.Value(258),
+        shoot: false
     }
 
     btnPress() {
-        let a = this.state.coordX._value === 0 ? 229 : 0;
+        let maxX = Dimensions.get('window').width - 94;
+        // console.log(maxX);
+        let a = this.state.coordX._value === 0 ? maxX : 0;
 
         Animated.parallel([
             Animated.timing(
@@ -38,26 +43,35 @@ export default class AnimeExample extends React.Component {
             Animated.timing(
                 this.state.widthX,
                 {
-                    toValue: 60
+                    toValue: 80
                 }
             )
         ]).start();
     }
 
     btnPress1() {
-        console.log(this.state.coordX._value = 0);
+        
+        Animated.timing(
+            this.state.shY,
+            {
+                toValue: 100,
+                duration: 3000
+            }
+        ).start();
     }
 
     render() {
-        let { coordX, widthX } = this.state;
-
+        let { coordX, widthX, shY } = this.state;
         return (
             <View style={styles.wrap}>
                 <Animated.Image 
-                    resizeMode={'stratch'}
+                    resizeMode={'stretch'} 
                     source={require('../img/Airplane.png')} 
                     style={[styles.img, {left: coordX, width: widthX}]}
                 />
+                <Animated.View 
+                    style={[styles.bullet, {top: shY}]}>
+                </Animated.View>
                 <TouchableNativeFeedback onPress={() => this.btnPress()}>
                     <View style={styles.touchblock}>
                         <Text style={styles.btnText}>Move!</Text>
@@ -83,7 +97,7 @@ const styles = StyleSheet.create({
         height: 80,
         width: 80,
         position: 'absolute',
-        left: 50
+        top: 250
     },
     touchblock: {
         height: 100, width: '48%',
@@ -95,5 +109,12 @@ const styles = StyleSheet.create({
           textAlign: 'center',
           lineHeight: 60,
           color: 'white'
-    }
+    },
+    bullet: {
+        height: 3,
+        width: 3,
+        position: 'absolute',
+        left: 38,
+        backgroundColor: 'black'
+    },
 });
