@@ -79,7 +79,7 @@ export default class AnimeExample extends React.Component {
                 </TouchableNativeFeedback>
                 <TouchableNativeFeedback onPress={() => this.btnPress1()}>
                     <View style={[styles.touchblock, {left: '50%'}]}>
-                        <Text style={styles.btnText}>Look!</Text>
+                        <Text style={styles.btnText}>Shoot!</Text>
                     </View>
                 </TouchableNativeFeedback>
             </View>

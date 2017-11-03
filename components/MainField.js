@@ -8,6 +8,7 @@ import { TABS } from '../constants';
 import ButtonExample from './ButtonsExample';
 import MoveExample from './MoveExample';
 import AnimeExample from './AnimeExample';
+import SmartExample from './SmartExample';
 
 export default class MainField extends React.Component {
     
@@ -19,12 +20,7 @@ export default class MainField extends React.Component {
         } else if (this.props.mode === TABS.SETTINGS) {
             return (<MoveExample />);
         } else {
-            return (
-                <View>
-                    <Text>SETTINGS OR HELP</Text>
-                </View>
-            );
-        } 
-        
+            return (<SmartExample />);
+        }         
     }
 }

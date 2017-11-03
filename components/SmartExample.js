@@ -12,7 +12,7 @@ import { Text } from 'native-base';
 
 import { setMode } from '../actions';
 
-export default class MoveExample extends React.Component {
+export default class SmartExample extends React.Component {
     constructor() {
         super();
 
@@ -75,7 +75,7 @@ export default class MoveExample extends React.Component {
                     />
                     <View style={styles.note}>
                         <Text style={styles.noteText}>
-                            M        O        V        E
+                            S        M        A        R        T
                         </Text>
                     </View>
             </View>
