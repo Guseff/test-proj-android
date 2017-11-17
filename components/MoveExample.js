@@ -49,6 +49,7 @@ export default class MoveExample extends React.Component {
           });
     }
 
+
     moveHandle(xxx) {
         let a = xxx - 40;
         a = a < 0 ? 0 : a;

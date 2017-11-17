@@ -5,7 +5,7 @@ import {
 import { Text } from 'native-base';
 
 import { TABS } from '../constants';
-import ButtonExample from './ButtonsExample';
+import GameField from './GameField';
 import MoveExample from './MoveExample';
 import AnimeExample from './AnimeExample';
 import SmartExample from './SmartExample';
@@ -14,7 +14,7 @@ export default class MainField extends React.Component {
     
     render() {
         if (this.props.mode === TABS.HOME) {
-            return (<ButtonExample mode={this.props.mode} />);
+            return (<GameField level={this.props.level} />);
         } else if (this.props.mode === TABS.LOVES) {
             return (<AnimeExample />);
         } else if (this.props.mode === TABS.SETTINGS) {

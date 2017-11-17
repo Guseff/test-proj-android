@@ -9,6 +9,7 @@ import {
     Animated
 } from 'react-native';
 import { Text } from 'native-base';
+import SpriteSheet from 'rn-sprite-sheet';
 
 import { setMode } from '../actions';
 
@@ -21,6 +22,9 @@ export default class SmartExample extends React.Component {
         }
 
         this.moveHandle = this.moveHandle.bind(this);
+        this.touchHandle = this.touchHandle.bind(this);
+        this.play = this.play.bind(this);
+        this.stop = this.stop.bind(this);
     }
 
     componentWillMount() {
@@ -33,10 +37,11 @@ export default class SmartExample extends React.Component {
       
             onPanResponderGrant: (evt, gestureState) => {
                 // console.log('Touch');
+                this.play('walk');
             },
             onPanResponderMove: (evt, gestureState) => {
                 // console.log('Move', gestureState.moveX);
-                this.moveHandle(gestureState.moveX);
+                // this.moveHandle(gestureState.moveX);
                 //   gestureState.moveX,
                 //   gestureState.dx,
             },
@@ -49,8 +54,21 @@ export default class SmartExample extends React.Component {
           });
     }
 
+    play = type => {
+        this.mummy.play({
+          type,
+          fps: 6,
+          loop: true,
+        });
+      }
+    
+    stop = () => {
+        this.mummy.stop(() => console.log('stopped'));
+    }
+    
+
     moveHandle(xxx) {
-        let a = xxx - 40;
+        let a = xxx - 60;
         a = a < 0 ? 0 : a;
         a = a > 260 ? 260 : a;
         Animated.timing(
@@ -62,6 +80,10 @@ export default class SmartExample extends React.Component {
         ).start();
     }
 
+    touchHandle() {
+        this.play('walk');
+    }
+
     render() {
         let { coordX } = this.state;
 
@@ -69,10 +91,22 @@ export default class SmartExample extends React.Component {
             <View 
                 {...this._panResponder.panHandlers}
                 style={styles.wrap}> 
-                    <Animated.Image 
-                        source={require('../img/Airplane.png')} 
-                        style={[styles.img, {left: coordX}]} 
-                    />
+                    <View style={{ flex: 1, overflow: 'hidden', justifyContent: 'center', alignItems: 'center', width: 70, height: 80 }}>
+                        <SpriteSheet
+                            ref={ref => this.mummy = ref}
+                            source={require('../img/ken.png')}
+                            columns={7}
+                            rows={10}
+                            // height={80} // set either, none, but not both
+                            // width={490}
+                            imageStyle={{ marginTop: -1 }}
+                            animations={{
+                                walk: [42, 43, 44, 45, 46, 42, 49, 50, 51, 52, 53],
+                                appear: Array.from({ length: 15 }, (v, i) => i + 18),
+                            }}
+                        />
+                    </View>
+                    
                     <View style={styles.note}>
                         <Text style={styles.noteText}>
                             S        M        A        R        T
@@ -86,8 +120,6 @@ export default class SmartExample extends React.Component {
 const styles = StyleSheet.create({
     wrap: {
         flex: 1,
-        borderColor: 'red',
-        borderWidth:1
     },
     img: {
         height: 80,
@@ -104,5 +136,11 @@ const styles = StyleSheet.create({
     noteText: {
         textAlign: 'center',
         color: 'white',
+    },
+    ken: {
+        width: 70,
+        height: 80,
+        position: 'absolute',
+        top: 250,
     }
   });

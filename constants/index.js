@@ -5,3 +5,4 @@ export const TABS = {
     HELP: 'HELP'
 };
 export const SET_MODE = 'SET_MODE';
+export const NEW_ROTATION = 'NEW_ROTATION';
